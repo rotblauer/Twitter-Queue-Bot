@@ -8,7 +8,7 @@ jQuery.noConflict();
 *   twitter = The Twitter username for the queue (without the "@")
 */
 var config = {
-    base_url: "",
+    base_url: "http://localhost:4200/",
     title: "Twitter Queue",
     twitter: ""
 }
