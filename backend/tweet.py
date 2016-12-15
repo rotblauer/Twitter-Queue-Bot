@@ -7,7 +7,25 @@ def tweet(twit):
     tweetToTweet = dbapi.topTweet()
     if not tweetToTweet:
         return
-    return (twit.statuses.update(status=tweetToTweet.content),
+
+    if not tweetToTweet.image:
+        return (twit.statuses.update(status=tweetToTweet.content),
+                tweetToTweet)
+
+
+    # # Send images along with your tweets:
+    # # - first just read images from the web or from files the regular way:
+    with open("path/to/images/" + tweetToTweet.image, "rb") as imagefile:
+        imagedata = imagefile.read()
+    # - then upload medias one by one on Twitter's dedicated server
+    #   and collect each one's id:
+    # t_upload = Twitter(domain='upload.twitter.com',
+        # auth=OAuth(token, token_secret, consumer_key, consumer_secret))
+        id_img1 = twit.media.upload(media=imagedata)["media_id_string"]
+    # id_img2 = t_upload.media.upload(media=imagedata)["media_id_string"]
+    # - finally send your tweet with the list of media ids:
+    # t.statuses.update(status="PTT ★", media_ids=",".join([id_img1, id_img2]))
+        return (twit.statuses.update(status=tweetToTweet.content, media_ids=id_img1),
             tweetToTweet)
 
 def urlWithEndpoint(endpoint):
