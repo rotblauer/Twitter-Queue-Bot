@@ -5,14 +5,15 @@ db = SqliteDatabase('tweets.db', threadlocals=True)
 class Tweet(Model):
     content = CharField()
     order = IntegerField()
+    image = CharField(null=True)
 
     class Meta():
         database = db
 
-def addTweet(content=""):
-    return insertTweet(content, numberOfTweets())
+def addTweet(content="", img=""):
+    return insertTweet(content, img, numberOfTweets())
 
-def insertTweet(content, index):
+def insertTweet(content, img, index):
     if not content:
         return None
     if index > numberOfTweets():
@@ -22,7 +23,7 @@ def insertTweet(content, index):
                         .where(Tweet.order >= index))
     updateQuery.execute()
 
-    tweet = Tweet.create(content=content, order=index)
+    tweet = Tweet.create(content=content, image=img, order=index)
     if not tweet:
         return None
 
@@ -109,4 +110,5 @@ def removeTweetWithID(id):
         return None
     return removeTweet(tweet)
 
+Tweet.drop_table(True)
 Tweet.create_table(True)

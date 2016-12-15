@@ -24,6 +24,7 @@ function QueueController($scope, $window, $http) {
     $scope.twitter = config.twitter;
 
     $scope.newTweet = "";
+    $scope.newTweeImage = "";
     $scope.tweets = [];
 
     $scope.checkLength = function () {
@@ -46,7 +47,7 @@ function QueueController($scope, $window, $http) {
 
     $scope.addTweet = function () {
         var tweetText = $scope.urlEncode($scope.newTweet.trim())
-        $http.post($scope.base_url+"add?tweet="+tweetText, {}).success(function (response) {
+        $http.post($scope.base_url+"add?tweet="+tweetText+"&image="+$scope.newTweetImage, {}).success(function (response) {
             if (response.tweet) {
                 $scope.tweets.push(response.tweet);
                 $scope.newTweet = "";

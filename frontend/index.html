@@ -13,6 +13,7 @@
     <script src="assets/js/app.js"></script>
 </head>
 <body ng-controller="QueueController">
+
 	<div class="modal fade" id="warningModal">
 	    <div class="modal-dialog">
 		    <div class="modal-content">
@@ -30,6 +31,11 @@
 	    </div>
 	</div>
 	<div id="wrapper" class="container">
+		<div class="row testes">
+			<p class="text-warning">
+				{{ tweets | json }}
+			</p>
+		</div>
 	    <header>
 	    	<div class="row">
 				<div class="col-md-12 center">
@@ -49,6 +55,7 @@
 	    		<h3>Add a Tweet:</h3>
 	    		<form role="form">
 	    			<div class="form-group">
+	    				<textarea class="form-control" rows="2" id="tweetBody" ng-model="newTweetImage" placeholder="image.jpg"></textarea>
 	    				<textarea class="form-control" rows="2" id="tweetBody" ng-model="newTweet" ng-change="checkLength();" placeholder="Here is my tweet. #hashtag"></textarea>
 	    			</div>
 	    			<div class="form-group center">
@@ -66,6 +73,7 @@
                         <!-- Order + 1 because order is 0-indexed -->
 	    				<td class="tweet-id">{{tweet.order + 1}}</td>
 	    				<td class="tweet-body">{{tweet.content}}</td>
+	    				<td class="tweet-image">{{tweet.image}}</td>
 	    				<td class="tweet-actions">
 	    					<button type="button" class="btn btn-sm btn-danger tweet-btn" ng-click="deleteTweet(tweet);">
 	    						<span class="glyphicon glyphicon-trash"></span>

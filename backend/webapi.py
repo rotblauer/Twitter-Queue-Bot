@@ -42,14 +42,15 @@ def add():
         return optionsResponse()
     arguments = request.args
     tweet = arguments.get("tweet", "")
+    image = arguments.get("image", "")
     index = arguments.get("index", "")
     if not (tweet):
         return Response("Give me content, ya dingus.", status=412)
 
     if not index:
-        response = dbapi.addTweet(tweet)
+        response = dbapi.addTweet(tweet, image)
     else:
-        response = dbapi.insertTweet(tweet, int(index))
+        response = dbapi.insertTweet(tweet, image, int(index))
 
     if not response:
         return databaseErrorResponse()
