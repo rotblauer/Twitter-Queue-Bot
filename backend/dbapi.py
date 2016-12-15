@@ -110,5 +110,5 @@ def removeTweetWithID(id):
         return None
     return removeTweet(tweet)
 
-Tweet.drop_table(True)
+# Tweet.drop_table(True)
 Tweet.create_table(True)
