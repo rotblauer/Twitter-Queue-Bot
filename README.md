@@ -1,3 +1,4 @@
+asdf
 Twitter-Queue-Bot
 =================
 
@@ -42,8 +43,8 @@ These are the valid queries to the web API:
 | `/move`        |  `id`       | Moves the provided ID to the top of the queue. |       POST                     |
 | `/all`         |  None       | All of the tweets in the queue.                |       GET                      |
 | `/next`        |  None       | The next tweet in the queue.                   |       GET                      |
-| `/count`       |  None       | The total number of tweets in the queue.       |       GET                      |  
-| `/remove`      |  `id`       | Removes the provided ID from the database      |       DELETE                   |   
+| `/count`       |  None       | The total number of tweets in the queue.       |       GET                      |
+| `/remove`      |  `id`       | Removes the provided ID from the database      |       DELETE                   |
 
 ## Frontend (Admin Panel)
 
